@@ -3,19 +3,24 @@ class Matrix3x3:
 	Цели: Пофиксить вывод после суммирования +
 		  Пересмотреть ретурн matrix_logic и вообще весь matrix_logic
 		  Добавить другие операции кроме умножения
-		  Добавить блоки try exept если в матрицу будут введены буквы
+		  Добавить блоки try exept, если в матрицу будут введены буквы
 		  Доделать красивый вывод результата суммирования матрици +
 		  Сделать отдельную функцию для инпутов элементов матриц +
 		  Проработать интерфейс
 		  Добавить выход если в инпуте любого числа написать 'q' или 'quit'
+		  Добавить небольшой ликбез по матрицам в начале по желанию пользователя
 
 	"""
-	def __init__(self, matrix1, matrix2):
+	def __init__(self, matrix1='', matrix2=''):
 		"""Функция инициализации класса"""
-		self.matrix1 = matrix1
-		self.matrix2 = matrix2
-		self.matrix_name = [matrix1.pop(0), matrix2.pop(0)]
-		self.matrix_list = [self.matrix1, self.matrix2]
+		if matrix2:
+			self.matrix1 = matrix1
+			self.matrix2 = matrix2
+			self.matrix_name = [matrix1.pop(0), matrix2.pop(0)]
+			self.matrix_list = [self.matrix1, self.matrix2]
+		else:
+			self.matrix1 = matrix1  # !!!!!!!!!!!!!
+			self.matrix_name = [matrix1.pop(0)]
 
 	def matrix_logic(self):
 		"""
@@ -38,7 +43,7 @@ class Matrix3x3:
 						 self.a22, self.a32, self.a13, self.a23, self.a33]
 		return return_list
 
-	def sum_matrix(self):
+	def sum_matrices(self):
 		"""
 		Принимает 2 ретурна от matrix_logic и записывает их в списки с номером 
 		матрицы, потом через цикл вырезает из каждого списка 2 элемент, 
@@ -61,6 +66,13 @@ class Matrix3x3:
 		pretty_matrix_result_sum = f"\n{slice_1} \n{slice_2} \n{slice_3}"
 
 		print ("\nResult of sum:", pretty_matrix_result_sum)
+
+	def multiply_matrices_on_numbers(self, number):
+		"""
+		Умножает матрици на числа. Каждый элемент матрици умножается на 
+		введенное число и результат записывается в список.
+		"""
+		print(number)
 
 
 def input_matrix(matrix_number):
@@ -87,23 +99,47 @@ def input_matrix(matrix_number):
 def create_matrix():
 	"""Функция ввода данных матриц"""
 	while True:
-		print ("\n\t\t\tMath Matrix Calculator by hocuda")
-		print ("What you want to do with your matrix?")
-		enter = input ("Sum matrixes - enter '1', quit - 'q':")
-		
+		print ("\n\t\t\tMath Matrices Calculator by Hocuda")
+		print ("What you want to do with matrices?")
+		answer = input("Sum matrixes - enter '1', " +
+						"multiply matrixes - enter '2', quit - 'q': ")
+		enter = answer.lower()
+
 		if enter == '1':
-			print("You choose sum 3x3 matrix")
+			print("You choose sum 3x3 matrices")
 			matrix1_list = input_matrix('first matrix')
 			print(f"Here is your first matrix \n{matrix1_list}")
 
 			matrix2_list = input_matrix('second matrix')
-			print(f"\nHere is your first and second matrix \n{matrix1_list} \t\n{matrix2_list}")
-			return matrix1_list, matrix2_list
+			print(f"\nHere is your first and second matrices" +
+				f"\n{matrix1_list} \t\n{matrix2_list}")
+			main = Matrix3x3(matrix1_list, matrix2_list)
+			main.sum_matrices()
+		
+		elif enter == '2':
+			print("You choose multiply 3x3 matrices")
+			print("What exactly do you want to do?")
+			choise = input("Multiply matrix on number - enter '1', " +
+							"Multiply matrix on matrix - 2, quit - 'q': ")
+			true_choise = choise.lower
+			
+			if choise == '1':
+				matrix1_list = input_matrix('matrix')
+				print(f"Here is your matrix \n{matrix1_list}")
+				
+				number = input("Number which the matrix will be multiplied: ")
+				main = Matrix3x3(matrix1_list)
+				main.multiply_matrices_on_numbers(int(number))
 
-		elif enter == 'q' or enter == 'quit':
+			elif choise == '2':
+				pass
+			elif choise == 'q' or choise == 'quit' or choise == 'й':
+				break
+
+
+		elif enter == 'q' or enter == 'quit' or enter == "й":
 			break
 		else:
-			print("What? Try again")
+			print("\nWhat? Try again")
 
-main_matrix = Matrix3x3(*create_matrix())
-main_matrix.sum_matrix()
+create_matrix()
