@@ -22,6 +22,7 @@ class Matrix3x3:
 			self.matrix1 = matrix1  # !!!!!!!!!!!!!
 			self.matrix_name = [matrix1.pop(0)]
 
+
 	def matrix_logic(self):
 		"""
 		Вырезает из списка со списками матриц
@@ -43,6 +44,7 @@ class Matrix3x3:
 						 self.a22, self.a32, self.a13, self.a23, self.a33]
 		return return_list
 
+
 	def sum_matrices(self):
 		"""
 		Принимает 2 ретурна от matrix_logic и записывает их в списки с номером 
@@ -60,19 +62,30 @@ class Matrix3x3:
 			matrix_result = matrix1_for + matrix2_for
 			matrix_result_sum.append(matrix_result)
 
-		slice_1 = matrix_result_sum[:3]
-		slice_2 = matrix_result_sum[3:6]
-		slice_3 = matrix_result_sum[6:]
-		pretty_matrix_result_sum = f"\n{slice_1} \n{slice_2} \n{slice_3}"
+		slice1 = matrix_result_sum[:3]
+		slice2 = matrix_result_sum[3:6]
+		slice3 = matrix_result_sum[6:]
+		pretty_matrix_result_sum = f"\n{slice_1}\n{slice_2}\n{slice_3}"
 
 		print ("\nResult of sum:", pretty_matrix_result_sum)
+
 
 	def multiply_matrices_on_numbers(self, number):
 		"""
 		Умножает матрици на числа. Каждый элемент матрици умножается на 
 		введенное число и результат записывается в список.
 		"""
-		print(number)
+		matrix_result_multiply_number = []
+		for element_matrix in self.matrix1:
+			result = element_matrix * number
+			matrix_result_multiply_number.append(result)
+
+		slice1 = matrix_result_multiply_number[:3]
+		slice2 = matrix_result_multiply_number[3:6]
+		slice3 = matrix_result_multiply_number[6:]
+		pretty_matrix_result_multiply_number = f"\n{slice1}\n{slice2}\n{slice3}"
+		
+		print(f"\nResult of sum:{pretty_matrix_result_multiply_number}")
 
 
 def input_matrix(matrix_number):
@@ -116,14 +129,15 @@ def create_matrix():
 			main = Matrix3x3(matrix1_list, matrix2_list)
 			main.sum_matrices()
 		
-		elif enter == '2':
-			print("You choose multiply 3x3 matrices")
+		elif enter == '2':  # Подраздел для умножения матриц 
+			print("\nYou choose multiply 3x3 matrices")
 			print("What exactly do you want to do?")
 			choise = input("Multiply matrix on number - enter '1', " +
 							"Multiply matrix on matrix - 2, quit - 'q': ")
 			true_choise = choise.lower
 			
-			if choise == '1':
+			if choise == '1':  # Если выбранно умножить матрицу на число
+				print("You choose multiply matrix on number")
 				matrix1_list = input_matrix('matrix')
 				print(f"Here is your matrix \n{matrix1_list}")
 				
@@ -131,7 +145,15 @@ def create_matrix():
 				main = Matrix3x3(matrix1_list)
 				main.multiply_matrices_on_numbers(int(number))
 
-			elif choise == '2':
+			elif choise == '2':  # Если выбранно умножить матрицу на матрицу
+				print("You choose multiply matrix on matrix")
+				matrix1_list = input_matrix('first matrix')
+				print(f"Here is your first matrix \n{matrix1_list}")
+
+				matrix2_list = input_matrix('second matrix')
+				print(f"\nHere is your first and second matrices" +
+					f"\n{matrix1_list} \t\n{matrix2_list}")
+				main = Matrix3x3(matrix1_list, matrix2_list)
 				pass
 			elif choise == 'q' or choise == 'quit' or choise == 'й':
 				break
