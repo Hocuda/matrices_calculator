@@ -138,7 +138,7 @@ def create_matrix():
 	"""
 	print("\n\n                                           __                         ")
 	print("|V| _ _|_ |_    |V| _ _|_ __ o  _  _  _   /     _  |  _     |  _ _|_ _  __")
-	print("| |(_| |_ | |   | |(_| |_ |  | (_ (/__>   \__  (_| | (_ |_| | (_| |_(_) | ")
+	print("| |(_| |_ | |   | |(_| |_ |  | (_ (/__>   \\__  (_| | (_ |_| | (_| |_(_) | ")
 	print("\nby Hocuda")
 	while True:
 		print("\n\t\t\tWhat you want to do with matrices?")
