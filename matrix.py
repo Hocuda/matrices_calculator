@@ -29,7 +29,7 @@ class Matrix3x3:
 		slice3 = matrix_result_sum[6:]
 		pretty_matrix_result_sum = f"\n{slice1}\n{slice2}\n{slice3}"
 
-		print ("\nResult of sum:", pretty_matrix_result_sum)
+		return pretty_matrix_result_sum
 
 	def multiply_matrix_on_number(self, number):
 		"""
@@ -47,7 +47,7 @@ class Matrix3x3:
 		slice3 = matrix_result_multiply_number[6:]
 		pretty_matrix_result_multiply_number = f"\n{slice1}\n{slice2}\n{slice3}"
 
-		print(f"\nResult of sum:{pretty_matrix_result_multiply_number}")
+		return pretty_matrix_result_multiply_number
 
 	def multiply_matrix_on_matrix(self):
 		"""
@@ -95,7 +95,7 @@ class Matrix3x3:
 		slice3 = matrix_result_multiply_matrix[6:]
 		pretty_matrix_result_multiply_matrix = f"\n{slice1}\n{slice2}\n{slice3}"
 
-		print(f"\nResult of sum:{pretty_matrix_result_multiply_matrix}")
+		return pretty_matrix_result_multiply_matrix
 
 
 def input_matrix(matrix_number):
@@ -163,7 +163,8 @@ def create_matrix():
 			print(f"\nHere is your first and second matrices" +
 				f"\n{matrix1_list} \t\n{matrix2_list}")
 			main = Matrix3x3(matrix1_list, matrix2_list)
-			main.sum_matrices()
+			pretty_matrix_result_sum = main.sum_matrices()
+			print ("\nResult of sum:", pretty_matrix_result_sum)
 
 		elif enter == '2':  # Подраздел для умножения матриц
 			print("\nYou choose multiply 3x3 matrices")
@@ -191,7 +192,9 @@ def create_matrix():
 						print("Its not number, try again")
 					else:
 						main = Matrix3x3(matrix1_list)
-						main.multiply_matrix_on_number(number)
+						pretty_matrix_result_multiply_number = main.multiply_matrix_on_number(number)
+						print(f"\nResult of sum:", pretty_matrix_result_multiply_number)
+
 						break
 
 			elif true_choise == '2':  # Если выбранно умножить матрицу на матрицу
@@ -211,7 +214,8 @@ def create_matrix():
 				print(f"\nHere is your first and second matrices" +
 					f"\n{matrix1_list} \t\n{matrix2_list}")
 				main = Matrix3x3(matrix1_list, matrix2_list)
-				main.multiply_matrix_on_matrix()
+				pretty_matrix_result_multiply_matrix = main.multiply_matrix_on_matrix()
+				print(f"\nResult of sum:", pretty_matrix_result_multiply_matrix)
 
 			elif true_choise == 'q' or true_choise == 'quit':
 				break
@@ -221,4 +225,5 @@ def create_matrix():
 		else:
 			print("\nWhat? Try again")
 
-create_matrix()
+if __name__ == '__main__':
+	create_matrix()
