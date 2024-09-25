@@ -1,4 +1,10 @@
 # Python Matrices Calculator
+```
+                                           __                         
+|V| _ _|_ |_    |V| _ _|_ __ o  _  _  _   /     _  |  _     |  _ _|_ _  __
+| |(_| |_ | |   | |(_| |_ |  | (_ (/__>   \__  (_| | (_ |_| | (_| |_(_) | 
+by Hocuda
+```
 
 Simple CLI python matrices calculator for 3x3 matrices (yet)
 
