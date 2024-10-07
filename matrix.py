@@ -98,6 +98,16 @@ class Matrix3x3:
 
 		return pretty_matrix_result
 
+	def transpose_m(self):
+		"""Транспонирование матрицы"""
+		m1 = self.matrix1
+		slice1 = [m1[0], m1[3], m1[6]]
+		slice2 = [m1[1], m1[4], m1[7]]
+		slice3 = [m1[2], m1[5], m1[8]]
+		pretty_matrix_result = f"\n{slice1}\n{slice2}\n{slice3}"
+		return pretty_matrix_result
+
+			
 
 def input_matrix(matrix_number):
 	"""
@@ -143,29 +153,54 @@ def create_matrix():
 	print("\nby Hocuda")
 	while True:
 		print("\n\t\t\tWhat you want to do with matrices?")
-		enter = input("Sum matrixes - enter '1', " +
+		enter = input("Sum, transpose matrixes - enter '1', " +
 						"multiply matrixes - enter '2', quit - 'q': ")
 		if enter == '1':
-			print("You choose sum 3x3 matrices")
-			matrix1_list = input_matrix('first matrix')
-			if matrix1_list:
-				pass
-			else:
+			print("You choose sum or transpose 3x3 matrices")
+			print("What exactly do you want to do?")
+			choise = input("Sum matrices - enter '1',\n" +
+							"Transpose of a matrix - enter '2' quit - 'q': ")
+
+			if choise == '1':
+				print("You choose sum 3x3 matrices")
+				matrix1_list = input_matrix('first matrix')
+				if matrix1_list:
+					pass
+				else:
+					break
+
+				print(f"Here is your first matrix \n{matrix1_list}")
+
+				matrix2_list = input_matrix('second matrix')
+				if matrix2_list:
+					pass
+				else:
+					break
+
+				print(f"\nHere is your first and second matrices" +
+					f"\n{matrix1_list} \t\n{matrix2_list}")
+				main = Matrix3x3(matrix1_list, matrix2_list)
+				pretty_matrix_result = main.sum_m()
+				print ("\nResult of sum:", pretty_matrix_result)
+
+			elif choise == '2':
+				print("You choose transpose of a matrix")
+				matrix1_list = input_matrix('matrix')
+				if matrix1_list:
+					pass
+				else:
+					break
+
+				print(f"Here is your first matrix \n{matrix1_list}")
+				
+				main = Matrix3x3(matrix1_list)
+				pretty_matrix_result = main.transpose_m()
+				print("\nResult of transpose matrix:", pretty_matrix_result)
+
+			elif choise.lower() == 'q' or choise.lower() == 'quit':
 				break
-
-			print(f"Here is your first matrix \n{matrix1_list}")
-
-			matrix2_list = input_matrix('second matrix')
-			if matrix2_list:
-				pass
 			else:
-				break
-
-			print(f"\nHere is your first and second matrices" +
-				f"\n{matrix1_list} \t\n{matrix2_list}")
-			main = Matrix3x3(matrix1_list, matrix2_list)
-			pretty_matrix_result = main.sum_m()
-			print ("\nResult of sum:", pretty_matrix_result)
+				print("What? Try again")
 
 		elif enter == '2':  # Подраздел для умножения матриц
 			print("\nYou choose multiply 3x3 matrices")
@@ -220,10 +255,10 @@ def create_matrix():
 				pretty_matrix_result = main.multiply_m_on_m()
 				print(f"\nResult of sum:", pretty_matrix_result)
 
-			elif choise == 'q' or choise == 'quit':
+			elif choise.lower() == 'q' or choise.lower() == 'quit':
 				break
 
-		elif enter == 'q' or enter == 'quit':
+		elif enter.lower() == 'q' or enter.lower() == 'quit':
 			break
 		else:
 			print("\nWhat? Try again")
