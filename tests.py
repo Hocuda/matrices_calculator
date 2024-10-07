@@ -31,5 +31,12 @@ class TestMatrix3x3(unittest.TestCase):
 		desired_result = '\n[30, 36, 42]\n[66, 81, 96]\n[102, 126, 150]'
 		self.assertEqual(result, desired_result)
 
+	def test_transpose_m(self):
+		matrix1 = matrix_value.copy()
+		test_main = Matrix3x3(matrix1)
+		result = test_main.transpose_m()
+		desired_result = '\n[1, 4, 7]\n[2, 5, 8]\n[3, 6, 9]'
+		self.assertEqual(result, desired_result)
+
 if __name__ == '__main__':
 	unittest.main()

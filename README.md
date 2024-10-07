@@ -30,7 +30,8 @@ python matrix.py
 python3 tests.py
 ```
 
-This will start a test, that verifies 3 functions of calculator: 
+This will start a test, that verifies 4 functions of calculator:
 + The function for summing matrix on matrix
 + The function for multiplying a matrix on number
 + The function for multiplying one matix by another
++ The function for transposing a matrix
